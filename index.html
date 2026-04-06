@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Association Tremplin Solidaire & Actions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root{--vert:#1a5c2a;--vert-clair:#2e7d3e;--vert-pale:#e8f2ea;--or:#c49a2b;--or-clair:#f0d98a;--blanc:#fafaf7;--texte:#1a2218;--gris:#6b7a6e;
+      --serif:'Lora',Georgia,serif; --sans:'Plus Jakarta Sans','Segoe UI',sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:auto;}
+    body{font-family:var(--sans);background:var(--blanc);color:var(--texte);font-size:16px;line-height:1.7;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,250,247,0.96);backdrop-filter:blur(8px);border-bottom:1px solid rgba(196,154,43,0.2);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:64px;}
+    .nav-logo{font-family:var(--serif);font-size:1.25rem;font-weight:700;color:var(--vert);letter-spacing:0.02em;cursor:pointer;white-space:nowrap;}
+    .nav-logo span{color:var(--or);}
+    .nav-links{display:flex;gap:0.05rem;list-style:none;flex-wrap:wrap;}
+    .nav-links li a{font-size:0.7rem;font-weight:500;text-decoration:none;color:var(--texte);padding:0.3rem 0.5rem;border-radius:4px;letter-spacing:0.03em;text-transform:uppercase;transition:background 0.2s,color 0.2s;}
+    .nav-links li a:hover,.nav-links li a.active{background:var(--vert);color:#fff;}
+    .nav-burger{display:none;cursor:pointer;font-size:1.4rem;color:var(--vert);}
+    /* ═══ NAVIGATION SIMPLE ET UNIVERSELLE ═══ */
+    section{display:none;width:100%;background:var(--blanc);}
+    section.active{display:block;}
+    body{padding-top:64px;}
+    /* ACCUEIL */
+    #accueil{display:none;}
+    #accueil.active{display:block;}
+    /* Hero image zone - contenu séparé */
+    .hero-bg{
+      background-image: url('https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=1920&q=80');
+      background-size:cover; background-position:center 45%;
+      min-height:calc(100vh - 64px);
+      display:flex; align-items:center;
+      position:relative; overflow:hidden;
+    }
+    .hero-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(8,28,12,0.90) 0%,rgba(8,28,12,0.65) 52%,rgba(8,28,12,0.10) 100%);pointer-events:none;z-index:0;}
+    /* Footer visible sur toutes les pages sauf accueil */
+    footer{display:none;}
+    /* Bouton Nous soutenir bien visible */
+    .btn-soutenir{
+      background:transparent;
+      color:var(--or-clair);
+      border:2px solid var(--or);
+      padding:0.85rem 2.2rem;
+      border-radius:4px; font-size:0.88rem; font-weight:600;
+      letter-spacing:0.08em; text-transform:uppercase; cursor:pointer;
+      font-family:var(--sans);
+      box-shadow:0 0 18px rgba(196,154,43,0.4), inset 0 0 0 0 var(--or);
+      transition:all 0.25s;
+    }
+    .btn-soutenir:hover{background:var(--or);color:#fff;box-shadow:0 0 28px rgba(196,154,43,0.7);}
+    .hero-inner{position:relative;z-index:1;padding:3rem 4rem;max-width:660px;}
+    .hero-badge{display:inline-block;border:1px solid rgba(240,217,138,0.6);color:var(--or-clair);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.4rem 1.2rem;border-radius:100px;margin-bottom:1.8rem;}
+    .hero-title{font-family:var(--serif);font-size:clamp(2.8rem,6vw,5rem);font-weight:700;color:#fff;line-height:1.08;max-width:600px;margin-bottom:0.8rem;}
+    .hero-title em{color:var(--or-clair);font-style:italic;display:block;}
+    .hero-slogan{font-size:0.82rem;color:rgba(255,255,255,0.75);letter-spacing:0.28em;text-transform:uppercase;margin-bottom:1.5rem;}
+    .hero-slogan span{color:var(--or-clair);font-weight:500;}
+    .hero-desc{max-width:480px;color:rgba(255,255,255,0.82);font-size:0.98rem;margin-bottom:2.2rem;line-height:1.7;}
+    .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+    .hero-stats{display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:2rem;padding:1.2rem 1.5rem;background:rgba(0,0,0,0.25);backdrop-filter:blur(6px);border-radius:8px;border:1px solid rgba(255,255,255,0.12);width:fit-content;}
+    .stat{display:flex;flex-direction:column;align-items:center;}
+    .stat-num{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--or-clair);line-height:1;}
+    .stat-label{font-size:0.65rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.2rem;}
+    .hero-social{display:flex;gap:0.7rem;flex-wrap:wrap;}
+    .social-link{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:#fff;font-size:0.95rem;text-decoration:none;transition:all 0.2s;}
+    .social-link:hover{background:var(--or);border-color:var(--or);transform:translateY(-2px);}
+    /* Nav transparent on hero */
+    nav.on-hero{background:rgba(15,40,18,0.75);border-bottom-color:rgba(196,154,43,0.15);}
+    nav.on-hero .nav-logo{color:#fff;}
+    nav.on-hero .nav-links li a{color:rgba(255,255,255,0.8);}
+    nav.on-hero .nav-links li a:hover,nav.on-hero .nav-links li a.active{background:rgba(255,255,255,0.15);color:#fff;}
+    nav.on-hero .nav-burger{color:#fff;}
+    .btn-gold{background:var(--or);color:#fff;border:none;padding:0.85rem 2.2rem;border-radius:4px;font-size:0.88rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:background 0.2s,transform 0.15s;font-family:var(--sans);}
+    .btn-gold:hover{background:#b38820;transform:translateY(-1px);}
+    .btn-outline-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.5);padding:0.85rem 2.2rem;border-radius:4px;font-size:0.88rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;font-family:var(--sans);}
+    .btn-outline-white:hover{border-color:#fff;background:rgba(255,255,255,0.1);}
+    .page-hero{
+      background:var(--vert); background-size:cover; background-position:center;
+      padding:4.5rem 2.5rem 3rem; text-align:center; position:relative; overflow:hidden;
+      min-height:260px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    }
+    .page-hero::before{content:'';position:absolute;inset:0;background:rgba(10,35,15,0.6);pointer-events:none;}
+    .page-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:40px;background:var(--blanc);clip-path:ellipse(55% 100% at 50% 100%);z-index:1;}
+    .page-hero h1,.page-hero p,.gold-line{position:relative;z-index:2;}
+    .page-hero h1{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);color:#fff;font-weight:700;margin-bottom:0.6rem;}
+    .page-hero p{color:rgba(255,255,255,0.85);max-width:560px;margin:0 auto;font-size:0.98rem;}
+    /* Images spécifiques par page */
+    #qui      .page-hero{background-image:url('https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=1400&q=80');}
+    #projets  .page-hero{background-image:url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1400&q=80');}
+    #ferme    .page-hero{background-image:url('https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1400&q=80');}
+    #boutique .page-hero{background-image:url('https://images.unsplash.com/photo-1506484381205-f7945653044d?auto=format&fit=crop&w=1400&q=80');}
+    #soutenir .page-hero{background-image:url('https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=1400&q=80');}
+    #contact  .page-hero{background-image:url('https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&w=1400&q=80');}
+    #actus    .page-hero{background-image:url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1400&q=80');}
+    #galerie  .page-hero{background-image:url('https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=1400&q=80');}
+    #partenaires .page-hero{background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=80');}
+    #adhesion .page-hero{background-image:url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1400&q=80');}
+    #guide .page-hero{background-image:url('https://images.unsplash.com/photo-1476231682828-37e571bc172f?auto=format&fit=crop&w=1400&q=80');}
+    .gold-line{width:60px;height:3px;background:var(--or);margin:1.2rem auto 0;border-radius:2px;}
+    .section-body{padding:4rem 2rem;max-width:1100px;margin:0 auto;}
+    /* Boutique nouvelle mise en page */
+    .boutique-cat{margin-bottom:3rem;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 16px rgba(26,92,42,0.07);}
+    .boutique-cat-header{display:flex;gap:1.2rem;align-items:center;padding:1.5rem 2rem;background:var(--vert-pale);border-bottom:2px solid var(--or);}
+    .boutique-cat-icon{font-size:2.2rem;flex-shrink:0;}
+    .boutique-cat-header h2{font-family:var(--serif);font-size:1.4rem;color:var(--vert);margin-bottom:0.2rem;}
+    .boutique-cat-header p{font-size:0.84rem;color:var(--gris);}
+    .produit-liste{padding:1rem 2rem;}
+    .produit-item-shop{display:flex;align-items:center;gap:1rem;padding:0.8rem 0;border-bottom:1px solid #f0f0ec;}
+    .produit-item-shop:last-child{border-bottom:none;}
+    .produit-item-shop>span{font-size:1.6rem;flex-shrink:0;width:36px;text-align:center;}
+    .produit-item-shop>div{flex:1;}
+    .produit-item-shop strong{display:block;font-size:0.9rem;color:var(--texte);}
+    .produit-item-shop small{font-size:0.78rem;color:var(--gris);}
+    .btn-cmd{background:var(--vert);color:#fff;border:none;padding:0.4rem 1rem;border-radius:4px;font-size:0.76rem;font-weight:600;cursor:pointer;font-family:var(--sans);white-space:nowrap;transition:background 0.2s;}
+    .btn-cmd:hover{background:var(--vert-clair);}
+    .savoirfaire-section{margin-top:3rem;}
+    .savoirfaire-section h2{font-family:var(--serif);font-size:1.8rem;color:var(--vert);margin-bottom:0.5rem;}
+    /* Ce qui nous guide */
+    .guide-card{background:#fff;border-radius:10px;padding:2rem;box-shadow:0 2px 14px rgba(26,92,42,0.08);border-left:4px solid var(--or);}
+    .guide-num{font-family:var(--serif);font-size:2.5rem;color:var(--or);font-weight:700;line-height:1;margin-bottom:0.6rem;}
+    .guide-card h3{font-family:var(--serif);font-size:1.2rem;color:var(--vert);margin-bottom:0.5rem;}
+    .guide-card p{font-size:0.87rem;color:var(--gris);}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-bottom:3rem;}
+    .about-text h2{font-family:var(--serif);font-size:2rem;color:var(--vert);margin-bottom:1.2rem;}
+    .about-text p{color:var(--gris);margin-bottom:1rem;}
+    .valeurs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+    .valeur-card{background:var(--vert-pale);border-radius:8px;padding:1.8rem;text-align:center;border-top:3px solid var(--or);transition:transform 0.2s;}
+    .valeur-card:hover{transform:translateY(-4px);}
+    .valeur-icon{font-size:2.2rem;margin-bottom:0.8rem;}
+    .valeur-card h3{font-family:var(--serif);font-size:1.3rem;color:var(--vert);margin-bottom:0.5rem;}
+    .valeur-card p{font-size:0.88rem;color:var(--gris);}
+    .team-section{margin-top:3.5rem;}
+    .team-section h2{font-family:var(--serif);font-size:1.8rem;color:var(--vert);margin-bottom:0.4rem;}
+    .team-subtitle{color:var(--gris);font-size:0.9rem;margin-bottom:1.5rem;font-style:italic;}
+    .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;}
+    .team-card{background:#fff;border-radius:8px;padding:1.5rem;text-align:center;box-shadow:0 2px 12px rgba(26,92,42,0.08);}
+    .team-avatar{width:70px;height:70px;border-radius:50%;background:var(--vert);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1rem;}
+    .team-card h4{font-size:0.95rem;font-weight:600;color:var(--texte);}
+    .team-card p{font-size:0.82rem;color:var(--or);font-weight:500;}
+    .team-card small{font-size:0.75rem;color:var(--gris);}
+    .projets-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;}
+    .projet-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 16px rgba(26,92,42,0.08);transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;}
+    .projet-card:hover{transform:translateY(-5px);box-shadow:0 8px 32px rgba(26,92,42,0.14);}
+    .projet-card-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:4rem;}
+    .projet-card-body{padding:1.5rem;}
+    .projet-tag{display:inline-block;background:var(--vert-pale);color:var(--vert);font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.25rem 0.7rem;border-radius:100px;margin-bottom:0.8rem;}
+    .projet-card h3{font-family:var(--serif);font-size:1.4rem;color:var(--texte);margin-bottom:0.5rem;}
+    .projet-card p{font-size:0.88rem;color:var(--gris);}
+    .projet-status{display:flex;align-items:center;gap:0.5rem;margin-top:1rem;font-size:0.8rem;color:var(--gris);}
+    .dot{width:8px;height:8px;border-radius:50%;}
+    .dot-active{background:#2ecc71;}
+    .dot-planned{background:var(--or);}
+    .ferme-intro{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:center;margin-bottom:3.5rem;}
+    .ferme-intro h2{font-family:var(--serif);font-size:2rem;color:var(--vert);margin-bottom:1.2rem;}
+    .ferme-intro p{color:var(--gris);margin-bottom:1rem;}
+    .ferme-map{background:var(--vert-pale);border-radius:12px;border:2px dashed var(--or);height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;}
+    .phases-title{font-family:var(--serif);font-size:1.8rem;color:var(--vert);margin-bottom:1.5rem;}
+    .phases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem;}
+    .phase-card{background:#fff;border-radius:8px;padding:1.8rem;box-shadow:0 2px 12px rgba(26,92,42,0.07);border-left:4px solid var(--or);}
+    .phase-num{font-family:var(--serif);font-size:2.5rem;color:var(--or);font-weight:700;line-height:1;margin-bottom:0.5rem;}
+    .phase-card h3{font-size:1rem;font-weight:600;color:var(--vert);margin-bottom:0.5rem;}
+    .phase-card p{font-size:0.86rem;color:var(--gris);}
+    .produits-section{margin-top:2.5rem;}
+    .produits-section>h3{font-family:var(--serif);font-size:1.8rem;color:var(--vert);margin-bottom:0.5rem;}
+    .produits-section>p{color:var(--gris);font-size:0.9rem;margin-bottom:1.5rem;}
+    .tabs{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+    .tab-btn{background:var(--vert-pale);color:var(--vert);border:none;padding:0.5rem 1.1rem;border-radius:100px;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all 0.2s;}
+    .tab-btn.active,.tab-btn:hover{background:var(--vert);color:#fff;}
+    .tab-content{display:none;}
+    .tab-content.active{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:0.8rem;}
+    .produit-pill{background:#fff;border:1.5px solid var(--vert-pale);border-radius:8px;padding:0.8rem 1rem;display:flex;align-items:center;gap:0.7rem;}
+    .produit-pill .emoji{font-size:1.4rem;flex-shrink:0;}
+    .produit-pill span{font-size:0.83rem;color:var(--texte);font-weight:500;}
+    .degustation-box{background:linear-gradient(135deg,var(--vert),var(--vert-clair));border-radius:12px;padding:2.5rem;margin-top:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;color:#fff;}
+    .degustation-box h3{font-family:var(--serif);font-size:1.8rem;margin-bottom:0.5rem;}
+    .degustation-box p{color:rgba(255,255,255,0.85);font-size:0.9rem;max-width:450px;}
+    .boutique-intro{text-align:center;max-width:620px;margin:0 auto 3.5rem;}
+    .boutique-intro h2{font-family:var(--serif);font-size:2rem;color:var(--vert);margin-bottom:1rem;}
+    .boutique-intro p{color:var(--gris);}
+    .boutique-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;margin-bottom:3rem;}
+    .boutique-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 16px rgba(26,92,42,0.08);transition:transform 0.2s;}
+    .boutique-card:hover{transform:translateY(-4px);}
+    .boutique-card-img{height:150px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;}
+    .boutique-card-body{padding:1.3rem;}
+    .boutique-card h3{font-family:var(--serif);font-size:1.25rem;color:var(--texte);margin-bottom:0.4rem;}
+    .boutique-card p{font-size:0.82rem;color:var(--gris);margin-bottom:1rem;}
+    .prix-badge{display:inline-block;background:var(--vert-pale);color:var(--vert);font-size:0.78rem;font-weight:700;padding:0.25rem 0.7rem;border-radius:4px;margin-bottom:0.8rem;}
+    .expertise-section{margin-top:3rem;}
+    .expertise-section h2{font-family:var(--serif);font-size:1.8rem;color:var(--vert);margin-bottom:1.5rem;}
+    .expertise-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;}
+    .expertise-card{background:var(--vert-pale);border-radius:8px;padding:1.8rem;border-left:4px solid var(--or);}
+    .expertise-card h4{font-size:1rem;font-weight:600;color:var(--vert);margin-bottom:0.5rem;}
+    .expertise-card p{font-size:0.85rem;color:var(--gris);}
+    .commande-box{background:var(--vert);color:#fff;border-radius:10px;padding:2.5rem;text-align:center;margin-top:3rem;}
+    .commande-box h3{font-family:var(--serif);font-size:1.6rem;margin-bottom:0.8rem;}
+    .commande-box p{color:rgba(255,255,255,0.8);margin-bottom:1.5rem;font-size:0.9rem;}
+    .soutenir-intro{text-align:center;max-width:620px;margin:0 auto 3.5rem;}
+    .soutenir-intro h2{font-family:var(--serif);font-size:2rem;color:var(--vert);margin-bottom:1rem;}
+    .soutenir-intro p{color:var(--gris);}
+    .soutenir-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;margin-bottom:3.5rem;}
+    .soutien-card{background:#fff;border-radius:10px;padding:2rem;box-shadow:0 2px 16px rgba(26,92,42,0.08);text-align:center;transition:transform 0.2s;}
+    .soutien-card:hover{transform:translateY(-4px);}
+    .soutien-card .icon{font-size:2.5rem;margin-bottom:1rem;}
+    .soutien-card h3{font-family:var(--serif);font-size:1.4rem;color:var(--vert);margin-bottom:0.7rem;}
+    .soutien-card p{font-size:0.88rem;color:var(--gris);margin-bottom:1.2rem;}
+    .btn-vert{background:var(--vert);color:#fff;border:none;padding:0.7rem 1.8rem;border-radius:4px;font-size:0.85rem;font-weight:500;cursor:pointer;font-family:var(--sans);transition:background 0.2s;}
+    .btn-vert:hover{background:var(--vert-clair);}
+    .rib-box{background:var(--vert-pale);border-radius:8px;border-left:4px solid var(--or);padding:2rem;max-width:500px;margin:0 auto;}
+    .rib-box h4{font-family:var(--serif);font-size:1.3rem;color:var(--vert);margin-bottom:1rem;}
+    .rib-row{display:flex;justify-content:space-between;font-size:0.88rem;margin-bottom:0.4rem;}
+    .rib-row span:first-child{color:var(--gris);}
+    .rib-row span:last-child{font-weight:600;color:var(--texte);}
+    .contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:start;}
+    .contact-info h2{font-family:var(--serif);font-size:1.8rem;color:var(--vert);margin-bottom:1.5rem;}
+    .contact-item{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.5rem;}
+    .contact-icon{font-size:1.5rem;margin-top:0.1rem;}
+    .contact-item h4{font-size:0.85rem;font-weight:600;color:var(--vert);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.2rem;}
+    .contact-item p{font-size:0.9rem;color:var(--gris);}
+    .contact-item a{color:var(--gris);text-decoration:none;}
+    .contact-item a:hover{color:var(--vert);}
+    .social-contact{margin-top:2rem;}
+    .social-contact h4{font-size:0.85rem;font-weight:600;color:var(--vert);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;}
+    .social-icons-row{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:0.6rem;}
+    .social-btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;border-radius:6px;font-size:0.8rem;font-weight:600;text-decoration:none;color:#fff;transition:opacity 0.2s,transform 0.15s;font-family:var(--sans);}
+    .social-btn:hover{opacity:0.85;transform:translateY(-2px);}
+    .s-facebook{background:#1877F2;}
+    .s-instagram{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
+    .s-whatsapp{background:#25D366;}
+    .s-tiktok{background:#010101;}
+    .s-youtube{background:#FF0000;}
+    .s-linkedin{background:#0A66C2;}
+    .contact-form{background:#fff;border-radius:10px;padding:2.5rem;box-shadow:0 2px 16px rgba(26,92,42,0.08);}
+    .contact-form h3{font-family:var(--serif);font-size:1.5rem;color:var(--vert);margin-bottom:1.5rem;}
+    .form-group{margin-bottom:1.2rem;}
+    .form-group label{display:block;font-size:0.82rem;font-weight:600;color:var(--texte);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.05em;}
+    .form-group input,.form-group textarea,.form-group select{width:100%;padding:0.75rem 1rem;border:1.5px solid #e0e8e2;border-radius:6px;font-size:0.9rem;font-family:var(--sans);color:var(--texte);background:var(--blanc);transition:border-color 0.2s;resize:vertical;}
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--vert);}
+    .form-group textarea{min-height:120px;}
+    .actu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;}
+    .actu-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(26,92,42,0.07);transition:transform 0.2s;}
+    .actu-card:hover{transform:translateY(-4px);}
+    .actu-img{height:160px;background:var(--vert-pale);display:flex;align-items:center;justify-content:center;font-size:3.5rem;}
+    .actu-body{padding:1.5rem;}
+    .actu-date{font-size:0.75rem;color:var(--or);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem;}
+    .actu-card h3{font-family:var(--serif);font-size:1.25rem;color:var(--texte);margin-bottom:0.5rem;}
+    .actu-card p{font-size:0.86rem;color:var(--gris);}
+    .actu-tag{display:inline-block;background:var(--vert-pale);color:var(--vert);font-size:0.7rem;font-weight:600;padding:0.2rem 0.6rem;border-radius:100px;margin-top:1rem;}
+    .galerie-intro{text-align:center;max-width:580px;margin:0 auto 2.5rem;color:var(--gris);}
+    .galerie-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+    .galerie-item{background:var(--vert-pale);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;min-height:180px;border:2px dashed rgba(26,92,42,0.2);transition:border-color 0.2s,background 0.2s;cursor:pointer;}
+    .galerie-item:hover{border-color:var(--or);background:#f5efe0;}
+    .galerie-item.featured{grid-column:span 2;min-height:220px;}
+    .galerie-item .g-icon{font-size:3rem;margin-bottom:0.7rem;}
+    .galerie-item p{font-size:0.85rem;color:var(--vert);font-weight:500;}
+    .galerie-item small{color:var(--gris);font-size:0.75rem;}
+    .upload-hint{text-align:center;margin-top:2rem;background:var(--vert-pale);border-radius:8px;padding:1.5rem;color:var(--gris);font-size:0.88rem;}
+    .partenaires-intro{text-align:center;max-width:580px;margin:0 auto 3rem;color:var(--gris);}
+    .partenaires-intro h2{font-family:var(--serif);font-size:2rem;color:var(--vert);margin-bottom:1rem;}
+    .partenaires-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:3.5rem;}
+    .partenaire-card{background:#fff;border-radius:8px;padding:2rem;text-align:center;box-shadow:0 2px 12px rgba(26,92,42,0.07);border-top:3px solid transparent;transition:border-color 0.2s,transform 0.2s;}
+    .partenaire-card:hover{border-color:var(--or);transform:translateY(-3px);}
+    .partenaire-logo{font-size:2.5rem;margin-bottom:0.8rem;}
+    .partenaire-card h4{font-size:0.92rem;font-weight:600;color:var(--texte);margin-bottom:0.3rem;}
+    .partenaire-card p{font-size:0.78rem;color:var(--gris);}
+    .partenaire-type{display:inline-block;background:var(--vert-pale);color:var(--vert);font-size:0.68rem;font-weight:600;padding:0.2rem 0.6rem;border-radius:100px;margin-top:0.6rem;}
+    .rejoindre-box{background:var(--vert);color:#fff;border-radius:12px;padding:3rem;text-align:center;}
+    .rejoindre-box h3{font-family:var(--serif);font-size:1.8rem;margin-bottom:1rem;}
+    .rejoindre-box p{color:rgba(255,255,255,0.8);margin-bottom:1.5rem;}
+    footer{background:var(--texte);color:rgba(255,255,255,0.7);padding:3rem 2rem 1.5rem;}
+    .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem;}
+    .footer-brand h3{font-family:var(--serif);font-size:1.4rem;color:#fff;margin-bottom:0.8rem;}
+    .footer-brand h3 span{color:var(--or-clair);}
+    .footer-brand p{font-size:0.86rem;line-height:1.6;margin-bottom:1rem;}
+    .footer-social{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.5rem;}
+    .footer-social-link{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.1);color:#fff;font-size:0.9rem;text-decoration:none;transition:all 0.2s;}
+    .footer-social-link:hover{background:var(--or);transform:translateY(-2px);}
+    .footer-col h4{font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--or-clair);margin-bottom:1rem;}
+    .footer-col ul{list-style:none;}
+    .footer-col ul li{margin-bottom:0.5rem;}
+    .footer-col ul li a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.86rem;transition:color 0.2s;cursor:pointer;}
+    .footer-col ul li a:hover{color:#fff;}
+    .footer-bottom{max-width:1100px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;flex-wrap:wrap;gap:0.5rem;}
+    .footer-slogan{color:var(--or-clair);font-family:var(--serif);font-size:0.9rem;letter-spacing:0.12em;}
+    /* Mini-footer inside each section */
+    .mini-footer{background:var(--texte);color:rgba(255,255,255,0.7);padding:2rem 2rem 1rem;margin-top:4rem;}
+    .mini-footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:2rem;margin-bottom:1.5rem;}
+    .mf-brand h3{font-family:var(--serif);font-size:1.2rem;color:#fff;margin-bottom:0.5rem;}
+    .mf-brand h3 span{color:var(--or-clair);}
+    .mf-brand p{font-size:0.8rem;line-height:1.6;}
+    .mf-social{display:flex;gap:0.5rem;margin-top:0.8rem;}
+    .mf-social a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:6px;background:rgba(255,255,255,0.1);color:#fff;font-size:0.85rem;text-decoration:none;transition:all 0.2s;}
+    .mf-social a:hover{background:var(--or);}
+    .mf-col h4{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--or-clair);margin-bottom:0.8rem;}
+    .mf-col ul{list-style:none;}
+    .mf-col ul li a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.82rem;cursor:pointer;display:block;padding:0.15rem 0;transition:color 0.2s;}
+    .mf-col ul li a:hover{color:#fff;}
+    .mf-bottom{max-width:1100px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.1);padding-top:1rem;display:flex;justify-content:space-between;font-size:0.75rem;flex-wrap:wrap;gap:0.5rem;}
+    /* Adhérer */
+    .adhesion-hero-box{background:linear-gradient(135deg,var(--vert),var(--vert-clair));border-radius:12px;padding:3rem;color:#fff;text-align:center;margin-bottom:3rem;}
+    .adhesion-hero-box h2{font-family:var(--serif);font-size:2rem;margin-bottom:0.8rem;}
+    .adhesion-hero-box p{color:rgba(255,255,255,0.85);max-width:560px;margin:0 auto;}
+    .adhesion-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:start;}
+    .adhesion-why h3{font-family:var(--serif);font-size:1.6rem;color:var(--vert);margin-bottom:1.2rem;}
+    .adhesion-point{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.2rem;}
+    .adhesion-point .ap-icon{font-size:1.5rem;flex-shrink:0;margin-top:0.1rem;}
+    .adhesion-point h4{font-size:0.9rem;font-weight:700;color:var(--texte);margin-bottom:0.2rem;}
+    .adhesion-point p{font-size:0.85rem;color:var(--gris);}
+    .adhesion-form-box{background:#fff;border-radius:10px;padding:2.5rem;box-shadow:0 2px 20px rgba(26,92,42,0.1);}
+    .adhesion-form-box h3{font-family:var(--serif);font-size:1.4rem;color:var(--vert);margin-bottom:0.4rem;}
+    .adhesion-form-box p{font-size:0.85rem;color:var(--gris);margin-bottom:1.5rem;}
+    /* Ce qui nous guide */
+    .guide-intro{text-align:center;max-width:620px;margin:0 auto 3rem;}
+    .guide-intro h2{font-family:var(--serif);font-size:2rem;color:var(--vert);margin-bottom:1rem;}
+    .guide-intro p{color:var(--gris);}
+    .valeurs-grande-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-bottom:3rem;}
+    .valeur-grande{background:#fff;border-radius:12px;padding:2.5rem;box-shadow:0 2px 16px rgba(26,92,42,0.08);border-top:4px solid var(--or);}
+    .valeur-grande .vg-icon{font-size:2.5rem;margin-bottom:1rem;}
+    .valeur-grande h3{font-family:var(--serif);font-size:1.4rem;color:var(--vert);margin-bottom:0.8rem;}
+    .valeur-grande p{font-size:0.9rem;color:var(--gris);line-height:1.7;}
+    .charte-box{background:var(--vert);color:#fff;border-radius:12px;padding:3rem;margin-top:2rem;}
+    .charte-box h3{font-family:var(--serif);font-size:1.8rem;margin-bottom:1.5rem;}
+    .charte-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+    .charte-item{background:rgba(255,255,255,0.1);border-radius:8px;padding:1.2rem;border-left:3px solid var(--or);}
+    .charte-item strong{display:block;font-size:0.88rem;color:var(--or-clair);margin-bottom:0.3rem;}
+    .charte-item span{font-size:0.82rem;color:rgba(255,255,255,0.8);}
+    /* Boutique tabs full */
+    .boutique-tabs-full{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+    .btab-btn{background:var(--vert-pale);color:var(--vert);border:none;padding:0.6rem 1.2rem;border-radius:100px;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all 0.2s;}
+    .btab-btn.active,.btab-btn:hover{background:var(--vert);color:#fff;}
+    .btab-content{display:none;}
+    .btab-content.active{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.8rem;}
+    @media(max-width:768px){
+      .adhesion-grid,.mini-footer-grid{grid-template-columns:1fr;gap:2rem;}
+      .valeurs-grande-grid{grid-template-columns:1fr;}
+    }
+    /* Guide cards */
+    .guide-card{background:#fff;border-radius:10px;padding:2rem;box-shadow:0 2px 12px rgba(26,92,42,0.08);}
+    .guide-num{font-family:var(--serif);font-size:2.5rem;font-weight:700;color:var(--or);line-height:1;margin-bottom:0.8rem;}
+    .guide-card h3{font-family:var(--serif);font-size:1.25rem;color:var(--vert);margin-bottom:0.6rem;}
+    .guide-card p{font-size:0.88rem;color:var(--gris);line-height:1.7;}
+    /* Fixed footer bar */
+    #footer-bar{
+      position:fixed;bottom:0;left:0;right:0;z-index:500;
+      background:var(--texte);color:rgba(255,255,255,0.7);
+      padding:0.6rem 2rem;
+      display:none;
+      align-items:center;justify-content:space-between;
+      font-size:0.75rem;flex-wrap:wrap;gap:0.5rem;
+      border-top:1px solid rgba(255,255,255,0.1);
+    }
+    #footer-bar.visible{display:flex;}
+    #footer-bar a{color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.2s;cursor:pointer;}
+    #footer-bar a:hover{color:#fff;}
+    #footer-bar .fb-social{display:flex;gap:0.5rem;}
+    #footer-bar .fb-social a{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:4px;background:rgba(255,255,255,0.1);color:#fff;font-size:0.75rem;text-decoration:none;transition:all 0.2s;}
+    #footer-bar .fb-social a:hover{background:var(--or);}
+    /* Give sections bottom padding so content not hidden behind footer bar */
+    section:not(#accueil){padding-bottom:50px;}
+    @media(max-width:768px){
+      .nav-links{display:none;}
+      .nav-links.open{
+        display:flex;flex-direction:column;
+        position:fixed;top:64px;left:0;right:0;
+        background:#fff !important;
+        padding:0.5rem;
+        box-shadow:0 4px 20px rgba(0,0,0,0.15);
+        z-index:1001;
+        max-height:calc(100vh - 64px);overflow-y:auto;
+      }
+      .nav-links.open li a{
+        color:var(--texte) !important;
+        font-size:0.9rem !important;
+        padding:0.8rem 1rem !important;
+        border-bottom:1px solid var(--vert-pale);
+        display:block;
+      }
+      .nav-links.open li a:hover,
+      .nav-links.open li a.active{
+        background:var(--vert) !important;
+        color:#fff !important;
+        border-radius:4px;
+      }
+      .nav-burger{display:block;}
+      .about-grid,.ferme-intro,.contact-grid,.footer-grid{grid-template-columns:1fr;gap:2rem;}
+      .valeurs-grid,.phases-grid{grid-template-columns:1fr;}
+      .galerie-grid{grid-template-columns:1fr 1fr;}
+      .galerie-item.featured{grid-column:span 2;}
+    }
+    @media(max-width:480px){
+      .galerie-grid{grid-template-columns:1fr;}
+      .galerie-item.featured{grid-column:span 1;}
+      .tab-content.active{grid-template-columns:1fr;}
+    }
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    .animate{animation:fadeInUp 0.6s ease forwards;}
+    .animate-delay-1{opacity:0;animation:fadeInUp 0.6s 0.1s ease forwards;}
+    .animate-delay-2{opacity:0;animation:fadeInUp 0.6s 0.2s ease forwards;}
+    .animate-delay-3{opacity:0;animation:fadeInUp 0.6s 0.3s ease forwards;}
+    .animate-delay-4{opacity:0;animation:fadeInUp 0.6s 0.4s ease forwards;}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showPage('accueil')">Tremplin <span>Solidaire &amp; Actions</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="javascript:void(0)" onclick="showPage('accueil')" id="nav-accueil" class="active">Accueil</a></li>
+    <li><a href="javascript:void(0)" onclick="showPage('qui')" id="nav-qui">Qui sommes-nous</a></li>
+    <li><a href="javascript:void(0)" onclick="showPage('projets')" id="nav-projets">Projets</a></li>
+    <li><a href="javascript:void(0)" onclick="showPage('ferme')" id="nav-ferme">Notre Ferme</a></li>
+    <li><a href="javascript:void(0)" onclick="showPage('boutique')" id="nav-boutique">Boutique</a></li>
+    <li><a href="javascript:void(0)" onclick="showPage('soutenir')" id="nav-soutenir">Nous soutenir</a></li>
+    <li><a href="javascript:void(0)" onclick="showPage('adhesion')" id="nav-adhesion">Adhérer</a></li>
+    <li><a href="javascript:void(0)" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+    <li><a href="javascript:void(0)" onclick="showPage('actus')" id="nav-actus">Actualités</a></li>
+    <li><a href="javascript:void(0)" onclick="showPage('galerie')" id="nav-galerie">Galerie</a></li>
+    <li><a href="javascript:void(0)" onclick="showPage('partenaires')" id="nav-partenaires">Partenaires</a></li>
+  </ul>
+  <div class="nav-burger" id="burger" onclick="toggleMenu()">☰</div>
+</nav>
+
+
+
+
+<!-- PAGE 1 : ACCUEIL -->
+<section id="accueil" class="active">
+  <div class="hero-bg">
+  <div class="hero-inner">
+    <div class="hero-badge animate">France loi 1901 · Bénin loi 2025</div>
+    <h1 class="hero-title animate-delay-1">Cultiver l'avenir,<br/><em>ensemble.</em></h1>
+    <p class="hero-slogan animate-delay-2"><span>Soutenir</span> · <span>Accompagner</span> · <span>Révéler</span></p>
+    <p class="hero-desc animate-delay-3">Nous portons des projets d'agriculture circulaire et de développement solidaire entre la France et le Bénin, pour des communautés résilientes et autonomes.</p>
+    <div class="hero-ctas animate-delay-4">
+      <button class="btn-gold" onclick="showPage('projets')">Découvrir nos projets</button>
+      <button class="btn-soutenir" onclick="showPage('soutenir')">Nous soutenir</button>
+    </div>
+    <div class="hero-stats animate-delay-4">
+      <div class="stat"><span class="stat-num">2019</span><span class="stat-label">Fondée en</span></div>
+      <div class="stat"><span class="stat-num">2026</span><span class="stat-label">Concrétisée en</span></div>
+      <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Projets</span></div>
+      <div class="stat"><span class="stat-num">2</span><span class="stat-label">Pays pour conquérir le monde</span></div>
+      <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Impact</span></div>
+    </div>    <div class="hero-social animate-delay-4">
+      <a href="javascript:void(0)" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="javascript:void(0)" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/33753969348" class="social-link" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="javascript:void(0)" class="social-link" title="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="javascript:void(0)" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="javascript:void(0)" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+  </div><!-- fin hero-bg -->
+  
+  <!-- CE QUI NOUS GUIDE -->
+  <div style="background:var(--blanc);padding:5rem 2rem 4rem;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;max-width:680px;margin:0 auto 3.5rem;">
+        <p style="font-size:0.8rem;color:var(--or);font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.8rem;">Ce qui nous guide</p>
+        <h2 style="font-family:var(--serif);font-size:2.2rem;color:var(--texte);margin-bottom:1rem;">Nos principes d'action</h2>
+        <p style="font-family:var(--serif);font-size:1.2rem;color:var(--vert);font-style:italic;line-height:1.5;">"Nous ne faisons pas à la place des communautés — nous les aidons à faire elles-mêmes, mieux et plus vite."</p>
+        <div style="width:60px;height:3px;background:var(--or);margin:1.5rem auto 0;border-radius:2px;"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-bottom:3.5rem;">
+        <div class="guide-card"><div class="guide-num">01</div><h3>La dignité avant tout</h3><p>Chaque personne que nous accompagnons est un acteur de son propre développement, jamais un bénéficiaire passif.</p></div>
+        <div class="guide-card"><div class="guide-num">02</div><h3>L'échange, pas l'aide</h3><p>Nous croyons à la réciprocité. Ceux qui reçoivent contribuent en retour — compétences, temps, réseau.</p></div>
+        <div class="guide-card"><div class="guide-num">03</div><h3>Ancrage local</h3><p>Nos projets partent des réalités du terrain. Nous n'importons pas de solutions — nous construisons avec ce qui existe.</p></div>
+        <div class="guide-card"><div class="guide-num">04</div><h3>La durabilité comme boussole</h3><p>Chaque action est conçue pour durer sans nous. L'autonomie est notre mesure de succès.</p></div>
+        <div class="guide-card"><div class="guide-num">05</div><h3>Transparence absolue</h3><p>Chaque franc reçu, chaque décision prise est documentée et partagée avec nos membres et partenaires.</p></div>
+        <div class="guide-card"><div class="guide-num">06</div><h3>Construire des ponts</h3><p>Entre la France et le Bénin, entre la diaspora et les communautés d'origine — nous sommes le lien.</p></div>
+      </div>
+
+      <!-- BANDE RÉINVESTISSEMENT -->
+      <div style="background:linear-gradient(135deg,var(--vert),var(--vert-clair));border-radius:10px;padding:1.8rem 2.5rem;margin-bottom:2.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+        <span style="font-size:2rem;flex-shrink:0;">💚</span>
+        <div>
+          <strong style="color:var(--or-clair);font-family:var(--serif);font-size:1.1rem;display:block;margin-bottom:0.3rem;">L'argent au service de l'autonomie</strong>
+          <p style="color:rgba(255,255,255,0.9);font-size:0.88rem;margin:0;">Les bénéfices issus de la vente de nos produits ne sont pas redistribués — ils sont intégralement réinvestis dans de nouveaux projets communautaires pour donner aux communautés les armes de leur propre autonomie.</p>
+        </div>
+      </div>
+
+      <div style="background:var(--vert);color:#fff;border-radius:12px;padding:3rem;text-align:center;">
+        <h3 style="font-family:var(--serif);font-size:1.8rem;margin-bottom:1rem;">Soutenir · Accompagner · Révéler</h3>
+        <p style="color:rgba(255,255,255,0.82);max-width:560px;margin:0 auto 1.5rem;">Ces trois mots sont trois engagements concrets envers chaque communauté, chaque membre, chaque partenaire.</p>
+        <button class="btn-gold" onclick="showPage('adhesion')">Rejoindre l'association</button>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- PAGE 2 : QUI SOMMES-NOUS -->
+<section id="qui">
+  <div class="page-hero">
+    <h1>Qui sommes-nous</h1>
+    <p>Des femmes et des hommes animés par la solidarité, le développement durable et la conviction que chaque territoire porte en lui son propre avenir.</p>
+    <div class="gold-line"></div>
+  </div>
+  <div class="section-body">
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>Notre histoire</h2>
+        <p>Association Tremplin Solidaire & Actions est née en <strong>2019</strong> de la conviction que chaque territoire, chaque communauté porte en lui les ressources nécessaires à son propre développement. Notre rôle est d'être ce tremplin qui révèle et amplifie ce potentiel.</p>
+        <p>Fondée par des membres de la diaspora africaine, l'association tisse des liens durables entre la France et le Bénin, en co-construisant des projets avec les populations locales dans une logique de réciprocité et de respect mutuel.</p>
+        <p>Après une phase de structuration depuis <strong>2019</strong>, l'association entre en <strong>2026</strong> dans une phase de concrétisation active, avec le lancement de la ferme circulaire d'Agbata comme premier projet phare.</p>
+        <p>Nos actions s'inscrivent dans une vision d'économie circulaire et d'agriculture durable, au service des générations futures.</p>
+      </div>
+      <div>
+        <div style="background:var(--vert-pale);border-radius:12px;padding:2rem;border-left:4px solid var(--or);">
+          <h3 style="font-family:var(--serif);font-size:1.4rem;color:var(--vert);margin-bottom:1.2rem;">Notre identité</h3>
+          <div style="display:flex;flex-direction:column;gap:0.9rem;">
+            <div style="display:flex;align-items:flex-start;gap:0.8rem;"><span style="color:var(--or);font-size:1.2rem;margin-top:0.1rem;">✦</span><div><strong style="font-size:0.88rem;">Fondée en</strong><br/><span style="font-size:0.85rem;color:var(--gris);">2019 : Concrétisation 2026</span></div></div>
+            <div style="display:flex;align-items:flex-start;gap:0.8rem;"><span style="color:var(--or);font-size:1.2rem;margin-top:0.1rem;">✦</span><div><strong style="font-size:0.88rem;">Statut :</strong><br/><span style="font-size:0.85rem;color:var(--gris);">Loi 1901 (France) · Loi 2025 (Bénin)</span></div></div>
+            <div style="display:flex;align-items:flex-start;gap:0.8rem;"><span style="color:var(--or);font-size:1.2rem;margin-top:0.1rem;">✦</span><div><strong style="font-size:0.88rem;">Localisation</strong><br/><span style="font-size:0.85rem;color:var(--gris);">Agbata, arrondissement de Hèkanmey, commune de Zè, Bénin</span></div></div>
+            <div style="display:flex;align-items:flex-start;gap:0.8rem;"><span style="color:var(--or);font-size:1.2rem;margin-top:0.1rem;">✦</span><div><strong style="font-size:0.88rem;">Slogan</strong><br/><span style="font-size:0.85rem;color:var(--gris);font-style:italic;">Soutenir · Accompagner · Révéler</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="valeurs-grid">
+      <div class="valeur-card"><div class="valeur-icon">🌱</div><h3>Durabilité</h3><p>Chaque projet est conçu pour durer et s'améliorer dans le temps, sans dépendance externe.</p></div>
+      <div class="valeur-card"><div class="valeur-icon">🤝</div><h3>Solidarité</h3><p>Nous croyons en la force du collectif et en la responsabilité de chacun envers sa communauté.</p></div>
+      <div class="valeur-card"><div class="valeur-icon">💡</div><h3>Innovation</h3><p>Nous cherchons des solutions adaptées aux réalités locales, créatives et reproductibles.</p></div>
+      <div class="valeur-card"><div class="valeur-icon">🔍</div><h3>Transparence</h3><p>Nous rendons compte de chaque action et chaque franc investi à nos donateurs et partenaires.</p></div>
+      <div class="valeur-card"><div class="valeur-icon">🌍</div><h3>Enracinement</h3><p>Nos projets partent des besoins réels du terrain, portés par les communautés elles-mêmes.</p></div>
+      <div class="valeur-card"><div class="valeur-icon">✨</div><h3>Révélation</h3><p>Nous croyons que chaque personne et chaque territoire a un potentiel à révéler et à amplifier.</p></div>
+    </div>
+    <div class="team-section">
+      <h2>Celles et ceux qui portent le projet</h2>
+      <p class="team-subtitle">Une équipe engagée, entre France et Bénin, unie autour d'une même vision.</p>
+      <div class="team-grid">
+       <div class="team-card"><div class="team-avatar">🧑🏾</div><h4>Muriel SEZONLIN</h4><p>Président & Co-Fondateur</p></div>
+
+<div class="team-card"><div class="team-avatar">🧑🏾</div><h4>Merlo MEDENOU</h4><p>Secrétaire Général</p><small>Co-Fondateur</small></div>
+
+<div class="team-card"><div class="team-avatar">👩🏾</div><h4>Katia AGBECI</h4><p>Trésorière Générale</p><small>Co-Fondatrice</small></div>
+
+<div class="team-card">
+  <div class="team-avatar">👥</div>
+  <h4>Bénévoles</h4>
+  <p>Réseau de soutien</p>
+  <small>France & Bénin</small>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 3 : PROJETS -->
+<section id="projets">
+  <div class="page-hero">
+    <h1>Nos Projets</h1>
+    <p>Des initiatives concrètes au service du développement durable et de l'autonomisation des communautés.</p>
+    <div class="gold-line"></div>
+  </div>
+  <div class="section-body">
+    <div class="projets-grid">
+      <div class="projet-card" onclick="showPage('ferme')">
+        <div class="projet-card-img" style="background:linear-gradient(135deg,#d4edda,#a8d5b5);">🌿</div>
+        <div class="projet-card-body">
+          <span class="projet-tag">Agriculture</span>
+          <h3>Ferme Circulaire d'Agbata</h3>
+          <p>2 hectares à Agbata, arrondissement de Hèkanmey, commune de Zè (Bénin). Production de manioc et transformation en produits alimentaires locaux et modernes.</p>
+          <div class="projet-status"><span class="dot dot-active"></span><span>En cours — Phase de démarrage 2026</span></div>
+        </div>
+      </div>
+      <div class="projet-card">
+        <div class="projet-card-img" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);">❤️</div>
+        <div class="projet-card-body">
+          <span class="projet-tag">Santé</span>
+          <h3>Promotion de la Santé Publique</h3>
+          <p>Actions de sensibilisation, d'accès aux soins et de prévention au sein des communautés rurales partenaires du Bénin.</p>
+          <div class="projet-status"><span class="dot dot-planned"></span><span>En développement</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--vert-pale);border-radius:10px;padding:2.5rem;text-align:center;margin-top:3rem;">
+      <h3 style="font-family:var(--serif);font-size:1.6rem;color:var(--vert);margin-bottom:0.8rem;">D'autres projets à venir</h3>
+      <p style="color:var(--gris);max-width:500px;margin:0 auto 1.5rem;">Nous développons en permanence de nouvelles initiatives. Contactez-nous pour en savoir plus ou proposer votre collaboration.</p>
+      <button class="btn-gold" onclick="showPage('contact')">Nous contacter</button>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 4 : FERME -->
+<section id="ferme">
+  <div class="page-hero">
+    <h1>Notre Ferme d'Agbata, Hèkanmey, Zè</h1>
+    <p>Un projet d'agriculture circulaire au cœur du Bénin, porté par et pour la communauté.</p>
+    <div class="gold-line"></div>
+  </div>
+  <div class="section-body">
+    <div class="ferme-intro">
+      <div>
+        <h2>Un territoire, une vision</h2>
+        <p>Sur <strong>2 hectares</strong> de terre à <strong>Agbata, arrondissement de Hèkanmey, commune de Zè (Bénin)</strong>, l'Association Tremplin Solidaire & Actions développe un modèle agricole circulaire et solidaire.</p>
+        <p>Le projet s'articule à 90% autour de la culture du <strong>manioc</strong> et de sa transformation en une gamme de produits alimentaires traditionnels et modernes, avec une commercialisation progressive jusqu'à la diaspora béninoise.</p>
+        <p>Le site est en cours de clôture par une haie vive d'environ <strong>2 200 plants de campêche</strong>, contribuant à la biodiversité et à la protection du terrain. Chaque sous-produit est valorisé dans une logique d'économie circulaire.</p>
+      </div>
+      <div class="ferme-map" style="padding:0;overflow:hidden;">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4792.292255499203!2d2.3554456749953903!3d6.798319993199024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwNDcnNTQuMCJOIDLCsDIxJzI4LjkiRQ!5e1!3m2!1sfr!2sfr!4v1774628151277!5m2!1sfr!2sfr"
+    width="100%" height="280"
+    style="border:0;border-radius:12px 12px 0 0;display:block;"
+    allowfullscreen="" loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+  <div style="padding:0.8rem 1rem;background:var(--vert-pale);border-radius:0 0 12px 12px;">
+    <p style="font-size:0.82rem;color:var(--vert);font-weight:600;">📍 Agbata, Arrondissement de Hèkanmey, Commune de Zè 🇧🇯</p>
+    <small style="color:var(--gris);">Surface : ~2 ha · Clôture : ~2 200 plants de campêche</small>
+  </div>
+</div>
+    </div>
+
+    <h2 class="phases-title">Les 3 phases du déploiement commercial</h2>
+    <div class="phases-grid">
+      <div class="phase-card"><div class="phase-num">01</div><h3>Marché local - Calavi</h3><p>Vente directe sur les marchés locaux d'Abomey-Calavi. Validation du produit et du modèle de prix.</p></div>
+      <div class="phase-card"><div class="phase-num">02</div><h3>Marché national - Cotonou et environs</h3><p>Extension vers Cotonou, communes voisines et les réseaux de distribution alimentaire du Bénin.</p></div>
+      <div class="phase-card"><div class="phase-num">03</div><h3>Export diaspora</h3><p>Exportation vers la diaspora béninoise et africaine, via épiceries spécialisées et vente directe.</p></div>
+    </div>
+
+    <div class="produits-section">
+      <h3>Une ferme qui se régénère</h3>
+      <p>Du manioc à la table, en passant par l'industrie : chaque partie de la plante est valorisée.</p>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab(event,'alim')">🍽️ Alimentaires traditionnels</button>
+        <button class="tab-btn" onclick="switchTab(event,'moderne')">🏭 Transformés modernes</button>
+        <button class="tab-btn" onclick="switchTab(event,'industriel')">⚗️ Industriels</button>
+        <button class="tab-btn" onclick="switchTab(event,'energie')">⚡ Énergie & fermentation</button>
+        <button class="tab-btn" onclick="switchTab(event,'autres')">🐄 Autres usages</button>
+      </div>
+      <div id="tab-alim" class="tab-content active">
+        <div class="produit-pill"><span class="emoji">🥣</span><span>Gari</span></div>
+        <div class="produit-pill"><span class="emoji">🍚</span><span>Attiéké</span></div>
+        <div class="produit-pill"><span class="emoji">🍙</span><span>Placali</span></div>
+        <div class="produit-pill"><span class="emoji">🌾</span><span>Lafun</span></div>
+        <div class="produit-pill"><span class="emoji">🥬</span><span>Légumes de Manioc</span></div>
+        <div class="produit-pill"><span class="emoji">🍃</span><span>Chikwangue / Miondo</span></div>
+        <div class="produit-pill"><span class="emoji">🍘</span><span>Cassave / Galette de manioc</span></div>
+        <div class="produit-pill"><span class="emoji">🌾</span><span>Farine de manioc Haute qualité (HQCF)</span></div>
+        <div class="produit-pill"><span class="emoji">🧁</span><span>Amidon de manioc</span></div>
+        <div class="produit-pill"><span class="emoji">🥛</span><span>Tapioca</span></div>
+        <div class="produit-pill"><span class="emoji">🌾</span><span>Semoule de manioc</span></div>
+        <div class="produit-pill"><span class="emoji">🏵️</span><span>Cossettes (manioc séché)</span></div>
+      </div>
+      <div id="tab-moderne" class="tab-content">
+        <div class="produit-pill"><span class="emoji">🍲</span><span>Manioc bouilli</span></div>
+        <div class="produit-pill"><span class="emoji">🍟</span><span>Manioc frit</span></div>
+        <div class="produit-pill"><span class="emoji">🥔</span><span>Manioc pilé</span></div>
+        <div class="produit-pill"><span class="emoji">🥨</span><span>Chips de manioc</span></div>
+        <div class="produit-pill"><span class="emoji">🍞</span><span>Pain à base de manioc</span></div>
+        <div class="produit-pill"><span class="emoji">🧁</span><span>Biscuits et gâteaux</span></div>
+        <div class="produit-pill"><span class="emoji">🥟</span><span>Beignets</span></div>
+        <div class="produit-pill"><span class="emoji">👶🍼</span><span>Bouillies infantiles</span></div>
+      </div>
+      <div id="tab-industriel" class="tab-content">
+        <div class="produit-pill"><span class="emoji">🧪</span><span>Colle à base d'amidon</span></div>
+        <div class="produit-pill"><span class="emoji">♻️</span><span>Bioplastiques</span></div>
+        <div class="produit-pill"><span class="emoji">🍬</span><span>Sirop de glucose</span></div>
+        <div class="produit-pill"><span class="emoji">⚗️</span><span>Dextrine</span></div>
+        <div class="produit-pill"><span class="emoji">🧵</span><span>Apprêt textile</span></div>
+        <div class="produit-pill"><span class="emoji">📄</span><span>Papier et carton</span></div>
+      </div>
+      <div id="tab-energie" class="tab-content">
+        <div class="produit-pill"><span class="emoji">🍶</span><span>Alcool de manioc</span></div>
+        <div class="produit-pill"><span class="emoji">🍺</span><span>Bière de manioc</span></div>
+        <div class="produit-pill"><span class="emoji">🧴</span><span>Vinaigre</span></div>
+        <div class="produit-pill"><span class="emoji">⛽</span><span>Bioéthanol</span></div>
+      </div>
+      <div id="tab-autres" class="tab-content">
+        <div class="produit-pill"><span class="emoji">🐄</span><span>Alimentation animale (farine ou pellets)</span></div>
+      </div>
+    </div>
+
+    <div class="degustation-box">
+      <div>
+        <h3>🍽️ Venez déguster chez nous !</h3>
+        <p>Découvrez nos produits directement sur place à Agbata. Une expérience authentique au cœur de la ferme, pour goûter, comprendre et soutenir une agriculture durable et savoureuse.</p>
+      </div>
+      <button class="btn-gold" onclick="showPage('contact')">Organiser une visite</button>
+    </div>
+
+    <div style="background:var(--vert);color:#fff;border-radius:10px;padding:2.5rem;margin-top:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
+      <div>
+        <h3 style="font-family:var(--serif);font-size:1.6rem;margin-bottom:0.5rem;">Budget du projet</h3>
+        <p style="color:rgba(255,255,255,0.8);font-size:0.9rem;">Budget total estimé pour le démarrage et la première saison</p>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:var(--serif);font-size:2.8rem;color:var(--or-clair);font-weight:700;">~+10,0M</div>
+        <div style="font-size:0.85rem;color:rgba(255,255,255,0.7);">FCFA</div>
+      </div>
+      <button class="btn-gold" onclick="showPage('soutenir')">Soutenir ce projet</button>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 5 : BOUTIQUE -->
+<section id="boutique">
+  <div class="page-hero">
+    <h1>Notre Boutique</h1>
+    <p>Produits artisanaux de la ferme d'Agbata et expertise solidaire — du champ à votre table.</p>
+    <div class="gold-line"></div>
+  </div>
+  <div class="section-body">
+    <!-- CATÉGORIE 1 : Alimentaires traditionnels -->
+    <div class="boutique-cat">
+      <div class="boutique-cat-header">
+        <span class="boutique-cat-icon">🍽️</span>
+        <div>
+          <h2>Produits alimentaires traditionnels</h2>
+          <p>Le manioc sous toutes ses formes ancestrales, fermentées, séchées, cuites selon les savoirs transmis de génération en génération.</p>
+        </div>
+      </div>
+      <div class="produit-liste">
+        <div class="produit-item-shop"><span>🥣</span><div><strong>Gari</strong><small>Semoule fermentée & grillée — produit phare</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🍚</span><div><strong>Attiéké</strong><small>Semoule de manioc fermentée</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🍙</span><div><strong>Placali</strong><small>Pâte fermentée cuite</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🌾</span><div><strong>Lafun</strong><small>Farine de manioc fermentée & séchée</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🍃</span><div><strong>Chikwangue / Miondo</strong><small>Manioc cuit emballé en feuille</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🍘</span><div><strong>Cassave / Galette de manioc</strong><small>Galette traditionnelle artisanale</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🌾</span><div><strong>Farine de manioc HQCF</strong><small>Haute qualité pour boulangerie</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🧁</span><div><strong>Amidon de manioc</strong><small>Pur, pour cuisine & industrie</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🥛</span><div><strong>Tapioca</strong><small>Perles d'amidon de manioc</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🌾</span><div><strong>Semoule de manioc</strong><small>Fine ou grossière</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🏵️</span><div><strong>Cossettes séchées</strong><small>Manioc séché pour longue conservation</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+      </div>
+    </div>
+
+    <!-- CATÉGORIE 2 : Transformés modernes -->
+    <div class="boutique-cat">
+      <div class="boutique-cat-header">
+        <span class="boutique-cat-icon">🏭</span>
+        <div>
+          <h2>Produits transformés modernes</h2>
+          <p>Le manioc revisité pour les goûts contemporains, sans perdre son âme.</p>
+        </div>
+      </div>
+      <div class="produit-liste">
+        <div class="produit-item-shop"><span>🍲</span><div><strong>Manioc bouilli</strong><small>Prêt à consommer</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🍟</span><div><strong>Manioc frit</strong><small>Chips & frites artisanales</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🥔</span><div><strong>Manioc pilé</strong><small>Pâte épaisse traditionnelle</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🥨</span><div><strong>Chips de manioc</strong><small>Nature, épicé ou sucré</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🍞</span><div><strong>Pain à base de manioc</strong><small>Sans gluten, artisanal</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🧁</span><div><strong>Biscuits & gâteaux</strong><small>Recettes maison au manioc</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>🥟</span><div><strong>Beignets</strong><small>Frits à l'ancienne</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+        <div class="produit-item-shop"><span>👶</span><div><strong>Bouillies infantiles</strong><small>Enrichies, pour petits enfants</small></div><button class="btn-cmd" onclick="showPage('contact')">Commander</button></div>
+      </div>
+    </div>
+
+    <!-- CATÉGORIE 3 : Industriels -->
+    <div class="boutique-cat">
+      <div class="boutique-cat-header">
+        <span class="boutique-cat-icon">⚗️</span>
+        <div>
+          <h2>Produits industriels</h2>
+         <p>Le manioc au service de l'industrie — colle, bioplastique, papier et plus encore.</p>
+<span style="display:inline-block;margin-top:0.5rem;background:#fff3cd;color:#856404;font-size:0.78rem;font-weight:700;padding:0.3rem 0.9rem;border-radius:100px;border:1px solid #ffc107;">⏳ À venir</span>
+        </div>
+      </div>
+      <div class="produit-liste">
+        <div class="produit-item-shop"><span>🧪</span><div><strong>Colle à base d'amidon</strong><small>Biodégradable, non toxique</small></div><button class="btn-cmd" onclick="showPage('contact')">Rens.</button></div>
+        <div class="produit-item-shop"><span>♻️</span><div><strong>Bioplastiques</strong><small>Alternative durable aux plastiques</small></div><button class="btn-cmd" onclick="showPage('contact')">Rens.</button></div>
+        <div class="produit-item-shop"><span>🍬</span><div><strong>Sirop de glucose</strong><small>Pour confiserie & industrie alimentaire</small></div><button class="btn-cmd" onclick="showPage('contact')">Rens.</button></div>
+        <div class="produit-item-shop"><span>⚗️</span><div><strong>Dextrine</strong><small>Liant industriel naturel</small></div><button class="btn-cmd" onclick="showPage('contact')">Rens.</button></div>
+        <div class="produit-item-shop"><span>🧵</span><div><strong>Apprêt textile</strong><small>Finition et rigidification de tissus</small></div><button class="btn-cmd" onclick="showPage('contact')">Rens.</button></div>
+        <div class="produit-item-shop"><span>📄</span><div><strong>Papier & carton</strong><small>Charge naturelle à base d'amidon</small></div><button class="btn-cmd" onclick="showPage('contact')">Rens.</button></div>
+      </div>
+    </div>
+
+    <!-- CATÉGORIE 4 : Énergie & fermentation -->
+    <div class="boutique-cat">
+      <div class="boutique-cat-header">
+        <span class="boutique-cat-icon">⚡</span>
+        <div>
+          <h2>Énergie & fermentation</h2>
+          <p>Le manioc fermenté, distillé, transformé en énergie et en saveurs.</p>
+        </div>
+      </div>
+      <div class="produit-liste">
+        <div class="produit-item-shop"><span>🍶</span><div><strong>Alcool de manioc</strong><small>Distillé artisanalement</small></div><button class="btn-cmd" onclick="showPage('contact')">Rens.</button></div>
+        <div class="produit-item-shop"><span>🍺</span><div><strong>Bière de manioc</strong><small>Boisson fermentée traditionnelle</small></div><button class="btn-cmd" onclick="showPage('contact')">Rens.</button></div>
+        <div class="produit-item-shop"><span>🧴</span><div><strong>Vinaigre de manioc</strong><small>Naturel & artisanal</small></div><button class="btn-cmd" onclick="showPage('contact')">Rens.</button></div>
+        <div class="produit-item-shop"><span>⛽</span><div><strong>Bioéthanol</strong><small>Carburant renouvelable</small></div><button class="btn-cmd" onclick="showPage('contact')">Rens.</button></div>
+      </div>
+    </div>
+
+    <!-- CATÉGORIE 5 : Autres usages -->
+    <div class="boutique-cat">
+      <div class="boutique-cat-header">
+        <span class="boutique-cat-icon">🐄</span>
+        <div>
+          <h2>Autres usages</h2>
+          <p>Aucun déchet, tout est valorisé.</p>
+        </div>
+      </div>
+      <div class="produit-liste">
+        <div class="produit-item-shop"><span>🐄</span><div><strong>Alimentation animale</strong><small>Farine ou pellets pour bétail & volaille</small></div><button class="btn-cmd" onclick="showPage('contact')">Rens.</button></div>
+      </div>
+    </div>
+
+    <!-- SAVOIR-FAIRE -->
+    <div class="savoirfaire-section">
+      <h2>💡 Notre savoir-faire</h2>
+      <p style="color:var(--gris);margin-bottom:2rem;max-width:600px;">Des compétences construites sur le terrain, au service de vos projets.</p>
+      <div class="expertise-grid">
+        <div class="expertise-card"><h4>🌱 Conseil en agriculture circulaire</h4><p>De la conception à l'exploitation : accompagnement complet pour des fermes durables et autonomes.</p></div>
+        <div class="expertise-card"><h4>📋 Montage de dossiers de financement</h4><p>Structuration de projets associatifs ou entrepreneuriaux et recherche de financeurs institutionnels.</p></div>
+        <div class="expertise-card"><h4>🔗 Mise en réseau diaspora-Bénin</h4><p>Facilitation de partenariats entre la diaspora africaine en France et les acteurs locaux au Bénin.</p></div>
+        <div class="expertise-card"><h4>🍽️ Visites & Dégustations sur site</h4><p>Accueil à Agbata pour des visites guidées et dégustations : une immersion dans l'agriculture circulaire.</p></div>
+        <div class="expertise-card"><h4>🎓 Transmission de savoirs</h4><p>Ateliers de formation aux techniques de transformation du manioc et à l'agriculture biologique locale.</p></div>
+        <div class="expertise-card"><h4>🌍 Développement de filières locales</h4><p>Construction de chaînes de valeur durables autour des produits agricoles béninois.</p></div>
+      </div>
+    </div>
+
+    <div style="background:var(--vert-pale);border-left:4px solid var(--or);border-radius:8px;padding:1.8rem;margin-bottom:2rem;">
+      <p style="font-size:0.88rem;color:var(--vert);"><strong>💚 Acheter, c'est aussi soutenir :</strong> les bénéfices issus de la vente de nos produits sont intégralement réinvestis dans l'association, pour financer de nouveaux projets communautaires et donner aux communautés les moyens d'être durablement autonomes.</p>
+    </div>
+    <div class="commande-box">
+      <h3>Passer commande ou nous consulter</h3>
+      <p>Contactez-nous par email ou WhatsApp pour disponibilités, tarifs et livraison (Bénin, France, diaspora).</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <button class="btn-gold" onclick="showPage('contact')">Formulaire de contact</button>
+        <a href="https://wa.me/33753969348" style="display:inline-flex;align-items:center;gap:0.5rem;background:#25D366;color:#fff;padding:0.85rem 2rem;border-radius:4px;font-size:0.88rem;font-weight:600;text-decoration:none;letter-spacing:0.05em;text-transform:uppercase;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE : ADHÉSION -->
+<section id="adhesion">
+  <div class="page-hero">
+    <h1>Adhérer à l'Association</h1>
+    <p>Rejoindre Tremplin Solidaire & Actions, c'est rejoindre une communauté qui donne, reçoit et grandit ensemble.</p>
+    <div class="gold-line"></div>
+  </div>
+  <div class="section-body">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-bottom:3rem;">
+      <div>
+        <h2 style="font-family:var(--serif);font-size:1.9rem;color:var(--vert);margin-bottom:1rem;">Pourquoi adhérer ?</h2>
+        <p style="color:var(--gris);margin-bottom:1rem;">Tremplin Solidaire & Actions soutient ceux qui peuvent aussi aider en retour. Nous croyons à l'échange, pas à l'assistance unilatérale. Chaque adhérent apporte ses compétences, son réseau, son temps et bénéficie en retour des ressources, du réseau et des projets de l'association.</p>
+        <p style="color:var(--gris);margin-bottom:1.5rem;">Nous sélectionnons nos membres avec soin : nous cherchons des personnes engagées, aux valeurs alignées avec les nôtres, prêtes à contribuer activement à nos projets.</p>
+        <div style="display:flex;flex-direction:column;gap:0.9rem;">
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;"><span style="color:var(--or);font-size:1.3rem;">✦</span><div><strong>Accès aux projets</strong><br/><small style="color:var(--gris);">Participez aux projets agricoles, sociaux et culturels de l'association</small></div></div>
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;"><span style="color:var(--or);font-size:1.3rem;">✦</span><div><strong>Réseau France-Bénin</strong><br/><small style="color:var(--gris);">Accédez à un réseau de membres actifs entre la France et le Bénin</small></div></div>
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;"><span style="color:var(--or);font-size:1.3rem;">✦</span><div><strong>Dons & accompagnement</strong><br/><small style="color:var(--gris);">Bénéficiez des ressources de l'asso selon vos besoins et vos contributions</small></div></div>
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;"><span style="color:var(--or);font-size:1.3rem;">✦</span><div><strong>Formations & échanges</strong><br/><small style="color:var(--gris);">Participez aux ateliers, formations et événements organisés par l'association</small></div></div>
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:12px;padding:2.5rem;box-shadow:0 2px 20px rgba(26,92,42,0.1);">
+        <h3 style="font-family:var(--serif);font-size:1.5rem;color:var(--vert);margin-bottom:1.5rem;">Formulaire d'adhésion</h3>
+        <form id="form-adhesion" action="https://formspree.io/f/mqegeald" method="POST">
+          <div class="form-group"><label>Prénom & Nom *</label><input type="text" name="nom" placeholder="Votre nom complet" required/></div>
+          <div class="form-group"><label>Email *</label><input type="email" name="email" placeholder="votre@email.com" required/></div>
+          <div class="form-group"><label>Téléphone</label><input type="tel" name="telephone" placeholder="+33 ou +229..."/></div>
+          <div class="form-group">
+            <label>Pays de résidence *</label>
+            <select name="pays" required>
+              <option value="">Choisir…</option>
+              <option>France</option>
+              <option>Bénin</option>
+              <option>Autre pays</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Compétences que vous pouvez apporter *</label>
+            <select name="competences" required>
+              <option value="">Choisir votre domaine…</option>
+              <option>Agriculture / Agronomie</option>
+              <option>Communication / Marketing</option>
+              <option>Finance / Comptabilité</option>
+              <option>Droit / Juridique</option>
+              <option>Santé / Médical</option>
+              <option>Éducation / Formation</option>
+              <option>Logistique / Commerce</option>
+              <option>Numérique / Technologie</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Pourquoi souhaitez-vous adhérer ? *</label>
+            <textarea name="motivation" placeholder="Décrivez votre motivation, ce que vous souhaitez apporter et ce que vous espérez recevoir en retour…" style="min-height:100px;" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Comment comptez-vous contribuer ?</label>
+            <textarea name="contribution" placeholder="Bénévolat, expertise, réseau, financement, présence terrain…"></textarea>
+          </div>
+          <button type="submit" class="btn-gold" style="width:100%;margin-top:0.5rem;">Envoyer ma demande d'adhésion</button>
+          <p id="adhesion-ok" style="display:none;color:var(--vert);text-align:center;margin-top:1rem;font-weight:600;">✅ Demande envoyée ! Nous vous contacterons sous 72h.</p>
+        </form>
+        <p style="font-size:0.75rem;color:var(--gris);margin-top:0.8rem;text-align:center;">Toute candidature est étudiée avec attention. L'adhésion est soumise à validation par le bureau de l'association.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE : CE QUI NOUS GUIDE -->
+<section id="guide">
+  <div class="page-hero">
+    <h1>Ce qui nous guide</h1>
+    <p>Nos valeurs, notre philosophie d'action et les principes qui orientent chacune de nos décisions.</p>
+    <div class="gold-line"></div>
+  </div>
+  <div class="section-body">
+    <div style="text-align:center;max-width:680px;margin:0 auto 3.5rem;">
+      <p style="font-family:var(--serif);font-size:1.4rem;color:var(--vert);font-style:italic;line-height:1.5;">"Nous ne faisons pas à la place des communautés — nous les aidons à faire elles-mêmes, mieux et plus vite."</p>
+      <div class="gold-line" style="margin:1.5rem auto 0;"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-bottom:3.5rem;">
+      <div class="guide-card">
+        <div class="guide-num">01</div>
+        <h3>La dignité avant tout</h3>
+        <p>Chaque personne que nous accompagnons est un acteur de son propre développement, jamais un bénéficiaire passif. Nous refusons l'assistanat unilatéral.</p>
+      </div>
+      <div class="guide-card">
+        <div class="guide-num">02</div>
+        <h3>L'échange, pas l'aide</h3>
+        <p>Nous croyons à la réciprocité. Ceux qui reçoivent contribuent en retour — avec leurs compétences, leur temps, leur réseau. C'est ainsi que le développement dure.</p>
+      </div>
+      <div class="guide-card">
+        <div class="guide-num">03</div>
+        <h3>Ancrage local</h3>
+        <p>Nos projets partent toujours des réalités et des besoins du terrain. Nous n'importons pas de solutions — nous construisons avec ce qui existe déjà.</p>
+      </div>
+      <div class="guide-card">
+        <div class="guide-num">04</div>
+        <h3>La durabilité comme boussole</h3>
+        <p>Chaque action est conçue pour durer sans nous. Si notre départ fragilise un projet, c'est qu'il a mal été conçu. L'autonomie est notre mesure de succès.</p>
+      </div>
+      <div class="guide-card">
+        <div class="guide-num">05</div>
+        <h3>Transparence absolue</h3>
+        <p>Chaque franc reçu, chaque décision prise est documentée et partagée avec nos membres et partenaires. Nous n'avons rien à cacher.</p>
+      </div>
+      <div class="guide-card">
+        <div class="guide-num">06</div>
+        <h3>Construire des ponts</h3>
+        <p>Entre la France et le Bénin, entre la diaspora et les communautés d'origine, entre les savoirs traditionnels et les innovations modernes — nous sommes le lien.</p>
+      </div>
+    </div>
+    <div style="background:var(--vert);color:#fff;border-radius:12px;padding:3rem;text-align:center;">
+      <h3 style="font-family:var(--serif);font-size:1.8rem;margin-bottom:1rem;">Soutenir · Accompagner · Révéler</h3>
+      <p style="color:rgba(255,255,255,0.82);max-width:560px;margin:0 auto 1.5rem;">Ces trois mots ne sont pas un slogan. Ce sont trois engagements concrets que nous prenons envers chaque communauté, chaque membre, chaque partenaire.</p>
+      <button class="btn-gold" onclick="showPage('adhesion')">Rejoindre l'association</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- PAGE 6 : SOUTENIR -->
+<section id="soutenir">
+  <div class="page-hero">
+    <h1>Nous Soutenir</h1>
+    <p>Chaque geste compte. Rejoignez notre mouvement pour un développement solidaire et durable.</p>
+    <div class="gold-line"></div>
+  </div>
+  <div class="section-body">
+    <div class="soutenir-intro">
+      <h2>Votre soutien change des vies</h2>
+      <p>Que vous soyez particulier, entreprise ou institution, il existe plusieurs façons de contribuer à nos projets.</p>
+    </div>
+    <div class="soutenir-grid">
+      <div class="soutien-card"><div class="icon">💝</div><h3>Don financier</h3><p>Contribuez directement au financement de nos projets sur le terrain. Chaque euro est tracé et rendu compte.</p><button class="btn-vert" onclick="showPage('contact')">Faire un don</button></div>
+      <div class="soutien-card"><div class="icon">🤝</div><h3>Partenariat</h3><p>Entreprises et fondations : associez votre marque à des projets à impact réel et mesurable.</p><button class="btn-vert" onclick="showPage('contact')">Devenir partenaire</button></div>
+      <div class="soutien-card"><div class="icon">🙋</div><h3>Bénévolat</h3><p>Offrez votre temps et vos compétences : communication, finance, agronomie, logistique…</p><button class="btn-vert" onclick="showPage('contact')">Rejoindre l'équipe</button></div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;margin-bottom:2rem;">
+      <h3 style="font-family:var(--serif);font-size:1.6rem;color:var(--vert);margin-bottom:0.5rem;">Coordonnées bancaires</h3>
+      <p style="color:var(--gris);font-size:0.9rem;margin-bottom:1.5rem;">Vous avez la possibilité de faire des dons par MTN Mobile Money en précisant comme référence : DON Tremplin sur le 0161384986.  Pour les virements bancaires directs</p>
+    </div>
+    <div class="rib-box">
+      <h4>🏦 RIB de l'Association</h4>
+      <div class="rib-row"><span>Titulaire</span><span>Association Tremplin Solidaire & Actions</span></div>
+      <div class="rib-row"><span>Banque</span><span>À compléter</span></div>
+      <div class="rib-row"><span>IBAN</span><span>À compléter</span></div>
+      <div class="rib-row"><span>BIC/SWIFT</span><span>À compléter</span></div>
+      <p style="font-size:0.78rem;color:var(--gris);margin-top:1rem;">Pour tout don en France, vous recevrez un reçu fiscal (réduction d'impôt de 66% dans le cadre de la loi 1901 : en cours).</p>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 7 : CONTACT -->
+<section id="contact">
+  <div class="page-hero">
+    <h1>Contact</h1>
+    <p>Une question, une idée de partenariat, ou simplement envie d'en savoir plus ? Écrivez-nous.</p>
+    <div class="gold-line"></div>
+  </div>
+  <div class="section-body">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Restons en contact</h2>
+        <div class="contact-item">
+          <span class="contact-icon">📧</span>
+          <div><h4>Email</h4><p><a href="#" id="mailto-link" class="em-addr"></a></p></div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📞</span>
+          <div><h4>Téléphone Bénin 🇧🇯</h4><p><a href="tel:+22901613849​86">+229 01 61 38 49 86</a></p></div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">💬</span>
+          <div><h4>WhatsApp France 🇫🇷</h4><p><a href="https://wa.me/33753969348">+33 7 53 96 93 48</a></p></div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📍</span>
+          <div><h4>Terrain & coordination</h4><p>Agbata, arrondissement de Hèkanmey<br/>Commune de Zè — Bénin</p></div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">🕐</span>
+          <div><h4>Délai de réponse</h4><p>Sous 48 heures ouvrées</p></div>
+        </div>
+        <div class="social-contact">
+          <h4>Nos réseaux sociaux</h4>
+          <p style="font-size:0.78rem;color:var(--gris);margin-bottom:0.8rem;">Tous nos comptes sont au nom <strong>Tremplin Solidaire & Actions</strong></p>
+          <div class="social-icons-row">
+            <a href="javascript:void(0)" class="social-btn s-facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+            <a href="javascript:void(0)" class="social-btn s-instagram"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://wa.me/33753969348" class="social-btn s-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
+          <div class="social-icons-row">
+            <a href="javascript:void(0)" class="social-btn s-tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+            <a href="javascript:void(0)" class="social-btn s-youtube"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="javascript:void(0)" class="social-btn s-linkedin"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Envoyez-nous un message</h3>
+        <form id="form-contact" action="https://formspree.io/f/mbdpdlkd" method="POST">
+          <div class="form-group"><label>Prénom & Nom</label><input type="text" name="nom" placeholder="Votre nom complet" required/></div>
+          <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="votre@email.com" required/></div>
+          <div class="form-group">
+            <label>Sujet</label>
+            <select name="sujet">
+              <option value="">Choisir un sujet…</option>
+              <option>Don / Financement</option>
+              <option>Partenariat</option>
+              <option>Bénévolat</option>
+              <option>Commande boutique</option>
+              <option>Visite & Dégustation</option>
+              <option>Projet agricole</option>
+              <option>Expertise / Conseil</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Message</label><textarea name="message" placeholder="Votre message…" required></textarea></div>
+          <button type="submit" class="btn-gold" style="width:100%;">Envoyer le message</button>
+          <p id="contact-ok" style="display:none;color:var(--vert);text-align:center;margin-top:1rem;font-weight:600;">✅ Message envoyé ! Nous vous répondrons sous 48h.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 8 : ACTUALITÉS -->
+<section id="actus">
+  <div class="page-hero">
+    <h1>Actualités</h1>
+    <p>Suivez l'avancement de nos projets, nos événements et nos rencontres sur le terrain.</p>
+    <div class="gold-line"></div>
+  </div>
+  <div class="section-body">
+    <div class="actu-grid">
+      <div class="actu-card">
+        <div class="actu-img">🌱</div>
+        <div class="actu-body">
+          <div class="actu-date">2026 — Lancement</div>
+          <h3>Démarrage officiel de la ferme d'Agbata</h3>
+          <p>Visite officielle du terrain, rencontre avec les partenaires locaux et premières démarches pour la clôture du périmètre agricole.</p>
+          <span class="actu-tag">🌿 Ferme Agbata</span>
+        </div>
+      </div>
+      <div class="actu-card">
+        <div class="actu-img">📋</div>
+        <div class="actu-body">
+          <div class="actu-date">2025 — Structuration</div>
+          <h3>Dossier de financement finalisé</h3>
+          <p>Finalisation du dossier en 13 chapitres pour la ferme circulaire, incluant budget détaillé (~8,2M FCFA), plan commercial et étude de faisabilité.</p>
+          <span class="actu-tag">📄 Administratif</span>
+        </div>
+      </div>
+      <div class="actu-card">
+        <div class="actu-img">🏋️</div>
+        <div class="actu-body">
+          <div class="actu-date">2024 — Développement</div>
+          <h3>Étude de faisabilité — Salle de sport</h3>
+          <p>Étude complète réalisée pour le projet de salle de sport en plein air à Aïtchedji, Abomey-Calavi. Plans, budget et modèle économique validés.</p>
+          <span class="actu-tag">🏃 Sport</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem;padding:2rem;background:var(--vert-pale);border-radius:10px;">
+      <p style="color:var(--gris);margin-bottom:1rem;">Suivez-nous sur les réseaux pour les dernières nouvelles du terrain !</p>
+      <div style="display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;">
+        <a href="javascript:void(0)" class="social-btn s-facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a href="javascript:void(0)" class="social-btn s-instagram"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="javascript:void(0)" class="social-btn s-tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+      </div>
+      <p style="color:var(--gris);font-size:0.85rem;margin-bottom:1rem;">Ou recevez nos actualités par email :</p>
+      <form id="form-newsletter" action="https://formspree.io/f/mykbkzpb" method="POST" style="display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;">
+        <input type="email" name="email" placeholder="votre@email.com" required style="padding:0.7rem 1.2rem;border:1.5px solid #d0dcd3;border-radius:6px;font-size:0.9rem;min-width:260px;font-family:var(--sans);"/>
+        <button type="submit" class="btn-gold">S'inscrire</button>
+      </form>
+      <p id="newsletter-ok" style="display:none;color:var(--vert);font-weight:600;margin-top:1rem;">✅ Inscription enregistrée !</p>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 9 : GALERIE -->
+<section id="galerie">
+  <div class="page-hero">
+    <h1>Galerie</h1>
+    <p>Des images qui racontent notre histoire, notre terrain et nos actions au quotidien.</p>
+    <div class="gold-line"></div>
+  </div>
+  <div class="section-body">
+    <p class="galerie-intro">Retrouvez ici les photos de nos projets, de notre terre à Agbata, arrondissement de Hèkanmey, et de nos équipes sur le terrain au Bénin.</p>
+    <div class="galerie-grid">
+      <div class="galerie-item featured"><div class="g-icon">🌍</div><p>Le terrain d'Agbata</p><small>Photo à ajouter — vue du terrain (Hèkanmey, Zè)</small></div>
+      <div class="galerie-item"><div class="g-icon">🌾</div><p>Culture du manioc</p><small>Photo à ajouter</small></div>
+      <div class="galerie-item"><div class="g-icon">🏡</div><p>Village d'Agbata</p><small>Photo à ajouter</small></div>
+      <div class="galerie-item"><div class="g-icon">🤝</div><p>Rencontres partenaires</p><small>Photo à ajouter</small></div>
+      <div class="galerie-item"><div class="g-icon">🥣</div><p>Transformation — Gari</p><small>Photo à ajouter</small></div>
+      <div class="galerie-item"><div class="g-icon">🌿</div><p>Plants de campêche</p><small>Photo à ajouter</small></div>
+    </div>
+    <div class="upload-hint">
+      📷 <strong>Pour enrichir la galerie :</strong> partagez vos photos du terrain à <em><span class="em-addr"></span></em> ou via WhatsApp au <strong>+33 7 53 96 93 48</strong>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 10 : PARTENAIRES -->
+<section id="partenaires">
+  <div class="page-hero">
+    <h1>Nos Partenaires</h1>
+    <p>Ils nous font confiance et contribuent à faire grandir nos projets sur le terrain.</p>
+    <div class="gold-line"></div>
+  </div>
+  <div class="section-body">
+    <div class="partenaires-intro">
+      <h2>Ensemble, nous allons plus loin</h2>
+      <p>Nos projets se construisent grâce à la confiance et à l'engagement de partenaires institutionnels, associatifs et privés. Chaque partenariat est une force supplémentaire pour nos bénéficiaires.</p>
+    </div>
+    <div class="partenaires-grid">
+      <div class="partenaire-card"><div class="partenaire-logo">🏛️</div><h4>Partenaire institutionnel</h4><p>À compléter</p><span class="partenaire-type">Institutionnel</span></div>
+      <div class="partenaire-card"><div class="partenaire-logo">🌍</div><h4>ONG partenaire</h4><p>À compléter</p><span class="partenaire-type">Associatif</span></div>
+      <div class="partenaire-card"><div class="partenaire-logo">🏢</div><h4>Entreprise soutien</h4><p>À compléter</p><span class="partenaire-type">Entreprise</span></div>
+      <div class="partenaire-card"><div class="partenaire-logo">🌱</div><h4>Communauté de Zè</h4><p>Partenaire terrain — Agbata, Hèkanmey</p><span class="partenaire-type">Local</span></div>
+    </div>
+    <div class="rejoindre-box">
+      <h3>Devenez partenaire</h3>
+      <p>Vous êtes une entreprise, une fondation ou une institution ? Associez-vous à des projets à impact concret et mesurable.</p>
+      <button class="btn-gold" onclick="showPage('contact')">Nous contacter</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER BAR fixe -->
+<div id="footer-bar">
+  <span>© 2026 <strong style="color:#fff;">Tremplin Solidaire & Actions</strong> · Fr. loi 1901 · Bénin loi 2025 · Fondée 2019</span>
+  <span style="color:var(--or-clair);font-family:var(--serif);">Soutenir · Accompagner · Révéler</span>
+  <div class="fb-social">
+    <a href="javascript:void(0)" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="javascript:void(0)" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/33753969348" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="javascript:void(0)" title="TikTok"><i class="fab fa-tiktok"></i></a>
+    <a href="javascript:void(0)" title="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="javascript:void(0)" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+  <span id="fb-email"></span> · <a href="https://wa.me/33753969348">+33 7 53 96 93 48</a></span>
+</div>
+
+<script>
+  // ── Email anti-Cloudflare ──
+  var u='tremplinsolidaire';
+  var v='.asso';
+  var d='gmail';
+  var e='.com';
+  var at=String.fromCharCode(64);
+  var em=u+v+at+d+e;
+  // Remplir tous les emplacements email
+  document.querySelectorAll('.em-addr').forEach(function(el){
+    var a=document.createElement('a');
+    a.href='mailto:'+em; a.textContent=em;
+    el.parentNode.replaceChild(a,el);
+  });
+  var fbEmail=document.getElementById('fb-email');
+  if(fbEmail){var a=document.createElement('a');a.href='mailto:'+em;a.textContent=em;a.style.color='rgba(255,255,255,0.6)';fbEmail.appendChild(a);}
+  var ml=document.getElementById('mailto-link');
+  if(ml){ml.href='mailto:'+em;}
+
+  // ── Gestion formulaires Formspree ──
+  function handleForm(formId,okId){
+    var form=document.getElementById(formId);
+    if(!form)return;
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var data=new FormData(form);
+      fetch(form.action,{method:'POST',body:data,headers:{'Accept':'application/json'}})
+      .then(function(r){
+        if(r.ok){
+          form.reset();
+          var ok=document.getElementById(okId);
+          if(ok){ok.style.display='block';setTimeout(function(){ok.style.display='none';},5000);}
+        } else { alert('Erreur. Contactez-nous par WhatsApp.'); }
+      }).catch(function(){ alert('Problème de connexion. Contactez-nous par WhatsApp.'); });
+    });
+  }
+  handleForm('form-contact','contact-ok');
+  handleForm('form-adhesion','adhesion-ok');
+  handleForm('form-newsletter','newsletter-ok');
+
+  // ── Navigation ──
+  function showPage(id){
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('active');});
+    document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.remove('active');});
+    var s=document.getElementById(id);
+    if(s){s.classList.add('active');}
+    var n=document.getElementById('nav-'+id);
+    if(n)n.classList.add('active');
+    window.scrollTo(0,0);
+    document.getElementById('navLinks').classList.remove('open');
+    var nav=document.querySelector('nav');
+    var fb=document.getElementById('footer-bar');
+    if(id==='accueil'){
+      nav.classList.add('on-hero');
+      if(fb)fb.classList.remove('visible');
+    }else{
+      nav.classList.remove('on-hero');
+      if(fb)fb.classList.add('visible');
+    }
+  }
+  document.querySelector('nav').classList.add('on-hero');
+  function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+  function switchTab(e,name){
+    document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active');});
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+    document.getElementById('tab-'+name).classList.add('active');
+    e.target.classList.add('active');
+  }
+</script>
+</body>
+</html>
