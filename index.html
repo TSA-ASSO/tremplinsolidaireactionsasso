@@ -67,11 +67,11 @@
     .social-link{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:#fff;font-size:0.95rem;text-decoration:none;transition:all 0.2s;}
     .social-link:hover{background:var(--or);border-color:var(--or);transform:translateY(-2px);}
     /* Nav transparent on hero */
-    nav.on-hero{background:rgba(15,40,18,0.75);border-bottom-color:rgba(196,154,43,0.15);}
-    nav.on-hero .nav-logo{color:#fff;}
-    nav.on-hero .nav-links li a{color:rgba(255,255,255,0.8);}
-    nav.on-hero .nav-links li a:hover,nav.on-hero .nav-links li a.active{background:rgba(255,255,255,0.15);color:#fff;}
-    nav.on-hero .nav-burger{color:#fff;}
+    nav.on-hero{background:rgba(250,250,247,0.96);border-bottom-color:rgba(196,154,43,0.2);}
+    nav.on-hero .nav-logo{color:var(--vert);}
+    nav.on-hero .nav-links li a{color:var(--texte);}
+    nav.on-hero .nav-links li a:hover,nav.on-hero .nav-links li a.active{background:var(--vert);color:#fff;}
+    nav.on-hero .nav-burger{color:var(--vert);}
     .btn-gold{background:var(--or);color:#fff;border:none;padding:0.85rem 2.2rem;border-radius:4px;font-size:0.88rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:background 0.2s,transform 0.15s;font-family:var(--sans);}
     .btn-gold:hover{background:#b38820;transform:translateY(-1px);}
     .btn-outline-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.5);padding:0.85rem 2.2rem;border-radius:4px;font-size:0.88rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;font-family:var(--sans);}
@@ -136,7 +136,7 @@
     .team-subtitle{color:var(--gris);font-size:0.9rem;margin-bottom:1.5rem;font-style:italic;}
     .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;}
     .team-card{background:#fff;border-radius:8px;padding:1.5rem;text-align:center;box-shadow:0 2px 12px rgba(26,92,42,0.08);}
-    .team-avatar{width:70px;height:70px;border-radius:50%;background:var(--vert);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1rem;}
+    .team-avatar{width:70px;height:70px;border-radius:50%;background:var(--vert);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1rem;overflow:hidden;}
     .team-card h4{font-size:0.95rem;font-weight:600;color:var(--texte);}
     .team-card p{font-size:0.82rem;color:var(--or);font-weight:500;}
     .team-card small{font-size:0.75rem;color:var(--gris);}
@@ -399,6 +399,16 @@
     .animate-delay-2{opacity:0;animation:fadeInUp 0.6s 0.2s ease forwards;}
     .animate-delay-3{opacity:0;animation:fadeInUp 0.6s 0.3s ease forwards;}
     .animate-delay-4{opacity:0;animation:fadeInUp 0.6s 0.4s ease forwards;}
+
+    /* ── LIGHTBOX ── */
+    #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:1rem;}
+    #lightbox.open{display:flex;}
+    #lightbox-img{max-width:88vw;max-height:80vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.6);object-fit:contain;}
+    #lightbox-close{position:absolute;top:1.2rem;right:1.2rem;color:#fff;font-size:1.5rem;cursor:pointer;background:rgba(255,255,255,0.15);border:none;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;}
+    #lightbox-close:hover{background:var(--or);}
+    #lightbox-name{color:#fff;font-family:var(--serif);font-size:1rem;background:rgba(0,0,0,0.45);padding:0.4rem 1.2rem;border-radius:100px;}
+    .team-avatar img{cursor:zoom-in !important;transition:transform 0.2s;}
+    .team-avatar img:hover{transform:scale(1.06);}
   </style>
 </head>
 <body>
@@ -530,13 +540,13 @@
       <h2>Celles et ceux qui portent le projet</h2>
       <p class="team-subtitle">Une équipe engagée, entre France et Bénin, unie autour d'une même vision.</p>
       <div class="team-grid">
-       <div class="team-card"><div class="team-avatar" style="padding:0;overflow:hidden;"><img src="https://res.cloudinary.com/dpaaaqpky/image/upload/v1775485830/muriel.jpeg_alzp4n.jpg" alt="Muriel SEZONLIN" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><h4>Muriel SEZONLIN</h4><p>Président</p><small>Co-Fondateur</small></div>
+       <div class="team-card"><div class="team-avatar" style="padding:0;overflow:hidden;"><img src="https://res.cloudinary.com/dpaaaqpky/image/upload/v1775485830/muriel.jpeg_alzp4n.jpg" alt="Muriel SEZONLIN" onclick="openLightbox('https://res.cloudinary.com/dpaaaqpky/image/upload/v1775485830/muriel.jpeg_alzp4n.jpg','Muriel SEZONLIN — Président')" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><h4>Muriel SEZONLIN</h4><p>Président</p><small>Co-Fondateur</small></div>
 
-<div class="team-card"><div class="team-avatar" style="padding:0;overflow:hidden;"><img src="https://res.cloudinary.com/dpaaaqpky/image/upload/v1775485831/merlo.jpeg_hsqbo3.jpg" alt="Merlo MEDENOU" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><h4>Merlo MEDENOU</h4><p>Secrétaire Général</p><small>Co-Fondateur</small></div>
+<div class="team-card"><div class="team-avatar" style="padding:0;overflow:hidden;"><img src="https://res.cloudinary.com/dpaaaqpky/image/upload/v1775485831/merlo.jpeg_hsqbo3.jpg" alt="Merlo MEDENOU" onclick="openLightbox('https://res.cloudinary.com/dpaaaqpky/image/upload/v1775485831/merlo.jpeg_hsqbo3.jpg','Merlo MEDENOU — Secrétaire Général')" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><h4>Merlo MEDENOU</h4><p>Secrétaire Général</p><small>Co-Fondateur</small></div>
 
-<div class="team-card"><div class="team-avatar" style="padding:0;overflow:hidden;"><img src="https://res.cloudinary.com/dpaaaqpky/image/upload/v1775485830/katia.jpeg_rl2i33.jpg" alt="Katia AGBECI" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><h4>Katia AGBECI</h4><p>Trésorière Générale</p><small>Co-Fondatrice</small></div>
+<div class="team-card"><div class="team-avatar" style="padding:0;overflow:hidden;"><img src="https://res.cloudinary.com/dpaaaqpky/image/upload/v1775485830/katia.jpeg_rl2i33.jpg" alt="Katia AGBECI" onclick="openLightbox('https://res.cloudinary.com/dpaaaqpky/image/upload/v1775485830/katia.jpeg_rl2i33.jpg','Katia AGBECI — Trésorière Générale')" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><h4>Katia AGBECI</h4><p>Trésorière Générale</p><small>Co-Fondatrice</small></div>
 
-<div class="team-card"><div class="team-avatar" style="padding:0;overflow:hidden;"><img src="https://res.cloudinary.com/dpaaaqpky/image/upload/w_200,h_200,c_fill,q_auto/v1776456048/Sylvain_wz6aic.jpg" alt="Sylvain HOUNSA" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><h4>Sylvain HOUNSA</h4><p>Coordonnateur Général</p><small>Responsable terrain - Bénin</small></div>
+<div class="team-card"><div class="team-avatar" style="padding:0;overflow:hidden;"><img src="https://res.cloudinary.com/dpaaaqpky/image/upload/w_200,h_200,c_fill,q_auto/v1776456048/Sylvain_wz6aic.jpg" alt="Sylvain HOUNSA" onclick="openLightbox('https://res.cloudinary.com/dpaaaqpky/image/upload/v1776456048/Sylvain_wz6aic.jpg','Sylvain HOUNSA — Coordonnateur Général')" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><h4>Sylvain HOUNSA</h4><p>Coordonnateur Général</p><small>Responsable terrain - Bénin</small></div>
 
 <div class="team-card" style="grid-column:1/-1;max-width:200px;margin:0 auto;">
   <div class="team-avatar">👥</div>
@@ -1240,6 +1250,22 @@
     document.getElementById('tab-'+name).classList.add('active');
     e.target.classList.add('active');
   }
+
+  function openLightbox(src,name){
+    document.getElementById('lightbox-img').src=src;
+    document.getElementById('lightbox-name').textContent=name;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+    document.getElementById('lightbox-img').src='';
+  }
 </script>
+
+<div id="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt=""/>
+  <div id="lightbox-name"></div>
+</div>
 </body>
 </html>
